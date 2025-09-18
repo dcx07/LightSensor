@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Windows.Devices.Sensors;
 
 class Program
@@ -12,7 +13,11 @@ class Program
             return;
         }
 
-        var reading = sensor.GetCurrentReading();
-        Console.WriteLine($"Light intensity: {reading.IlluminanceInLux} lux");
+        while (true)
+        {
+            var reading = sensor.GetCurrentReading();
+            Console.WriteLine($"Light intensity: {reading.IlluminanceInLux} lux");
+            Thread.Sleep(1000);
+        }
     }
 }
